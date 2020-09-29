@@ -1,21 +1,36 @@
 import React from "react"
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
+// import Image from "../components/image"
 import SEO from "../components/seo"
+import styled from "styled-components"
+import Services from "../components/services"
+
+const HomeContent = styled.section`
+  width: 100%;
+  min-height: 100vh;
+`
+const Container = styled.div`
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  h1 {
+    padding: 6rem 0;
+  }
+`
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    <HomeContent>
+      <Container>
+        <h1>Home</h1>
+      </Container>
+    </HomeContent>
+    <Services title="Web Design" />
+    {/* <Services title="Web Development" /> */}
   </Layout>
 )
 
