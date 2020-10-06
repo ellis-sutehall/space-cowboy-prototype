@@ -6,6 +6,7 @@
  */
 
 import React from "react"
+import { myContext } from "../../provider"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
@@ -41,17 +42,21 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <Wrapper>
-        <Main>{children}</Main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </Wrapper>
-    </>
+    <myContext.Consumer>
+      {context => (
+        <React.Fragment>
+          <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+          <Wrapper>
+            <Main>{children}</Main>
+            <footer>
+              © {new Date().getFullYear()}, Built with
+              {` `}
+              <a href="https://www.gatsbyjs.com">Gatsby</a>
+            </footer>
+          </Wrapper>
+        </React.Fragment>
+      )}
+    </myContext.Consumer>
   )
 }
 

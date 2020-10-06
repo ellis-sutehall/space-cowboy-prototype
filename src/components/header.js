@@ -1,6 +1,9 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import { myContext } from "../../provider"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+
 import styled from "styled-components"
 
 const SiteHeader = styled.header`
@@ -51,42 +54,56 @@ const HeaderNav = styled.nav`
         text-decoration: none;
         color: white;
         text-transform: uppercase;
+        &.active {
+          color: lightblue;
+        }
       }
     }
   }
 `
 const Header = ({ siteTitle }) => (
-  <SiteHeader>
-    <Container>
-      <HeaderWrap>
-        <HomeLink>
-          <Link to="/">{siteTitle}</Link>
-        </HomeLink>
-        <HeaderNav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/services">Services</Link>
-            </li>
-            <li>
-              <Link to="/work">Work</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-          </ul>
-        </HeaderNav>
-      </HeaderWrap>
-    </Container>
-  </SiteHeader>
+  <myContext.Consumer>
+    {context => (
+      <React.Fragment>
+        <SiteHeader id="siteHeader">
+          <Container>
+            <HeaderWrap>
+              <HomeLink>
+                <Link to="/">{siteTitle}</Link>
+              </HomeLink>
+              <HeaderNav>
+                <ul>
+                  <li>
+                    <AnchorLink
+                      activeClassName="active"
+                      to="/#gatsby-focus-wrapper"
+                    >
+                      Home
+                    </AnchorLink>
+                  </li>
+                  <li>
+                    <AnchorLink to="/#webdesign">Services</AnchorLink>
+                  </li>
+                  <li>
+                    <Link to="/work">Work</Link>
+                  </li>
+                  <li>
+                    <Link to="/about">About</Link>
+                  </li>
+                  <li>
+                    <Link to="/contact">Contact</Link>
+                  </li>
+                  <li>
+                    <Link to="/blog">Blog</Link>
+                  </li>
+                </ul>
+              </HeaderNav>
+            </HeaderWrap>
+          </Container>
+        </SiteHeader>
+      </React.Fragment>
+    )}
+  </myContext.Consumer>
 )
 
 Header.propTypes = {

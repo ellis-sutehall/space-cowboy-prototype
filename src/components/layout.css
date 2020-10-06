@@ -20,10 +20,10 @@ body {
   font-feature-settings: "kern", "liga", "clig", "calt";
 }
 
-.sticky {
+/* .sticky {
   position: fixed;
   top: 6rem;
-}
+} */
 
 article,
 aside,
